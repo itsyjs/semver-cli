@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import semver from 'semver'
 import arg from 'arg'
+import { semverPipe } from './handler.js'
 
 const args = arg({
   '--command': [String],
@@ -11,11 +11,5 @@ const args = arg({
 const debugging = args['--debug']
 const commands = args['--command']
 
-const pipe = (...fns) => (x) => fns.reduce((_v, f) => {
-  const v = Array.isArray(_v) ? _v : [_v]
-  if (debugging) console.log('Calling', `semver.${f}`, 'with arguments:', v)
-  return semver[f](...v)
-}, x);
-
-const result = pipe(...commands)(args._)
+const result = semverPipe(commands, debugging)(args._)
 console.log(result)

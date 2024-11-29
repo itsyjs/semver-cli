@@ -1,12 +1,16 @@
 {
   "name": "@itsy/semver-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "bin": "./bin.js",
-  "scripts": {},
+  "scripts": {
+    "test": "node --test",
+    "test:bin": "node bin.js --command coerce --command valid --command major 10.10.1"
+  },
   "author": "Dave Honneffer <pearofducks@gmail.com>",
   "license": "MIT",
   "repository": "https://github.com/itsyjs/semver-cli",
+  "keywords": ["semver", "cli"],
   "dependencies": {
     "arg": "^5.0.2",
     "semver": "^7.6.3"
